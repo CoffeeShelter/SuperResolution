@@ -90,7 +90,7 @@ model = hub.load(MODEL_PATH)
 _start = time.time()
 for i in range(9):
     start = time.time()
-    IMAGE_PATH = "sample (%d).jpg"%(i+1)
+    IMAGE_PATH = "samples/sample (%d).jpg"%(i+1)
     RESULT_PATH = "sr_testDenoiser (%d).jpg"%(i+1)
     result = test_sr(IMAGE_PATH, model)
     cv2.imwrite(RESULT_PATH, result)
