@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import requests
 
 # 양방향 필터
 # img = 변환할 이미지 , count = 노이즈 제거 양방향 필터 적용할 횟수
@@ -51,3 +52,16 @@ def sharping(img):
     img = cv2.filter2D(img,-1,sharpe_filter)
 
     return img
+
+# DeepAI 사이트의 Waifu2x Restful API 이용
+def Waifu2x(filePath, api_key):
+    r = requests.post(
+        "https://api.deepai.org/api/waifu2x",
+        files={
+            'image': open(filePath, 'rb'),
+        },
+        headers={'api-key': api_key}
+    )
+    result = r.json()
+    result = result.get("output_url")
+    return result
